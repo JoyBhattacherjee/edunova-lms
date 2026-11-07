@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': { target: 'http://localhost:5001', changeOrigin: true },
+      '/api': { target: 'https://edunova-lms-server-sooty.vercel.app', changeOrigin: true },
     },
   },
 });
