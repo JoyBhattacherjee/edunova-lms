@@ -52,7 +52,7 @@ cp .env.example .env        # Windows: copy .env.example .env
 # open .env and set DATABASE_URL and JWT_SECRET (see next section)
 npm install
 npm run db:setup            # creates tables + loads demo data
-npm run dev                 # API on http://localhost:5000
+npm run dev                 # API on http://localhost:5001
 ```
 
 ### 3. Start the web app (new terminal)
@@ -107,7 +107,7 @@ Then run once: `cd server && npm run db:setup` (or `npm run db:migrate` for an e
 node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
 ```
 
-**Check the connection:** with the API running open http://localhost:5000/api/health — you should see `"database":"connected"`.
+**Check the connection:** with the API running open http://localhost:5001/api/health — you should see `"database":"connected"`.
 
 ---
 

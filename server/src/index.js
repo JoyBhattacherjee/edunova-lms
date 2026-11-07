@@ -38,5 +38,5 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.status ? err.message : 'Something went wrong on the server' });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`EduNova API running on http://localhost:${PORT}`));
