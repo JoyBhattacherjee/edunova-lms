@@ -11,7 +11,7 @@ const useSsl = String(process.env.PG_SSL).toLowerCase() === 'true';
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: useSsl ? { rejectUnauthorized: false } : false,
-  max: 10,
+  max: process.env.VERCEL ? 3 : 10, // keep serverless connection counts low
 });
 
 pool.on('error', (err) => console.error('Unexpected PG pool error', err));

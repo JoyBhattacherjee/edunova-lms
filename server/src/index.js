@@ -13,6 +13,8 @@ app.use(cors({ origin: origins, credentials: true }));
 app.use(express.json({ limit: '1mb' }));
 if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
 
+app.get('/', (req, res) => res.json({ name: 'EduNova API', status: 'ok' }));
+
 app.get('/api/health', async (req, res) => {
   try {
     await db.query('SELECT 1');
@@ -38,5 +40,10 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.status ? err.message : 'Something went wrong on the server' });
 });
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`EduNova API running on http://localhost:${PORT}`));
+// On Vercel the app runs as a serverless function (see api/index.js), so we only listen locally.
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => console.log(`EduNova API running on http://localhost:${PORT}`));
+}
+
+module.exports = app;
